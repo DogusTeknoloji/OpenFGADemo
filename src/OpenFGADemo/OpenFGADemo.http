@@ -1,0 +1,49 @@
+@OpenFGADemo_HostAddress = https://localhost:7069
+
+GET {{OpenFGADemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+
+GET {{OpenFGADemo_HostAddress}}/documents/list-store
+Accept: application/json
+
+
+###
+
+
+POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=alper&documentId=DDD.pdf&permission=owner
+Accept: application/json
+
+
+###
+
+
+POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=ali&documentId=DDD.pdf&permission=reader
+Accept: application/json
+
+
+###
+
+
+POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=veli&documentId=DDD.pdf&permission=writer
+Accept: application/json
+
+
+
+
+
+
+###
+
+
+POST {{OpenFGADemo_HostAddress}}/documents/check
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId":"veli",
+  "documentId":"DDD.pdf",
+  "permission":"reader"
+}
