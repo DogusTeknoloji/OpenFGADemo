@@ -11,6 +11,14 @@ Accept: application/json
 
 
 ###
+# Bu modelin oluşturulması için kullandığımız endpoint
+
+PUT https://localhost:7069/Documents/create
+
+
+
+
+###
 
 
 POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=alper&documentId=DDD.pdf&permission=owner
@@ -47,3 +55,31 @@ Content-Type: application/json
   "documentId":"DDD.pdf",
   "permission":"reader"
 }
+
+
+
+
+
+
+###
+# Demo Get metodunun çağırımı / Admin kullanıcısı için
+
+GET {{OpenFGADemo_HostAddress}}/Demo
+Accept: application/json
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+
+
+###
+# Demo Get metodunun çağırımı / Alper kullanıcısı için
+
+GET {{OpenFGADemo_HostAddress}}/Demo
+Accept: application/json
+Authorization: Basic YWxwZXI6cGFzc3dvcmQ=
+
+
+
+###
+
+
+POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=admin&documentId=DemoWebApi&permission=owner
+Accept: application/json
