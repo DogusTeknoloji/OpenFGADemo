@@ -34,5 +34,24 @@ namespace OpenFGADemo.Services
                 return false;
             }
         }
+
+        public async Task<bool[]> CheckAccess(string userId, string documentId, params string[] permissions)
+        {
+            try
+            {
+                var response = await _openFgaClient.BatchCheck([.. permissions.Select(x=> new ClientCheckRequest
+                {
+                    User = $"user:{userId}",
+                    Relation = x,
+                    Object = $"document:{documentId}"
+                })], new ClientBatchCheckOptions { StoreId = _storeId });
+
+                return [.. response.Responses.Select(x => x.Allowed)];
+            }
+            catch
+            {
+                return [.. permissions.Select(_ => false)];
+            }
+        }
     }
 }
