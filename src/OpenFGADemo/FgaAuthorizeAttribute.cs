@@ -34,6 +34,12 @@ public class FgaAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
         _resultOperator = isAndOperator ? FgaResultOperator.And : FgaResultOperator.Or;
     }
 
+    public string Resource => _resource;
+
+    public string[] Permissions => _permissions;
+
+    public FgaResultOperator ResultOperator => _resultOperator;
+
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
     {
         var user = context.HttpContext.User.Identity?.Name;
@@ -58,7 +64,7 @@ public class FgaAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
             // OR : false false false
             // AND : true true false
         }
-        //else cases : 
+        //else cases :
         // OR : true false false
         // AND : true true true
     }

@@ -83,3 +83,14 @@ Authorization: Basic YWxwZXI6cGFzc3dvcmQ=
 
 POST {{OpenFGADemo_HostAddress}}/documents/assign?userId=admin&documentId=DemoWebApi&permission=owner
 Accept: application/json
+
+
+
+
+###
+# Demo/Demo Get metodunun çağırımı / Admin kullanıcısı için
+
+GET {{OpenFGADemo_HostAddress}}/Demo/Demo
+Accept: application/json
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+

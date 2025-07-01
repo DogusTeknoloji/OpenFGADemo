@@ -37,6 +37,11 @@ internal class Program
 
         builder.Services.AddTransient<IAuthorizeService, AuthorizeService>();
 
+        builder.Services.AddScoped<SessionInfo>();
+
+        builder.Services.AddDynamicProxyService()
+            .AddScopedWithInterceptors<IDemoService, DemoService>(typeof(LoggingInterceptor<,>), typeof(FgaCheckInterceptor<,>));
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

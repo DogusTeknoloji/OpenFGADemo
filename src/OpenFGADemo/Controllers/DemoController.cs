@@ -48,6 +48,26 @@ public class DemoController : ControllerBase
         return Ok(list);
     }
 
+    [HttpGet("[action]")]
+    [Authorize]
+    //[FgaAuthorize("DemoWebApi", Constantants.Owner, Constantants.Admin)]
+    public async Task<IActionResult> Demo([FromServices] IDemoService demoService)
+    {
+        //if(!User.Identity?.IsAuthenticated ?? true)
+        //{
+        //    return Unauthorized();
+        //}
+        //var accessCheck = await _authorizeService.CheckAccess(User.Identity?.Name ?? string.Empty, "DemoWebApi", "owner");
+        //if (!accessCheck)
+        //{
+        //    return Forbid();
+        //}
+
+        var a = await demoService.GetStoreNameAsync(1);
+
+        return Ok(list);
+    }
+
     public record DemoDto(int Id, string Name, DateTimeOffset CreatedAt);
 }
 
